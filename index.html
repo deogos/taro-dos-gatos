@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#141326">
+    <meta name="description" content="Corra, salte e use os arcanos do tarô para guiar a gata Neblina por três fases iluminadas pela lua.">
+    <title>Tarô dos Gatos</title>
+    <link rel="stylesheet" href="./game.css">
+    <script type="module" src="./game.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <div class="game-title">
+          <span class="title-moon" aria-hidden="true">☾</span>
+          <h1>Tarô dos <em>Gatos</em></h1>
+        </div>
+        <div class="stage-progress">
+          <p class="stage-number" id="stage-number">Fase 1 / 3</p>
+          <h2 id="stage-title">Jardim da Lua</h2>
+          <p class="spark-count" id="spark-count"></p>
+        </div>
+        <button type="button" class="reset" id="reset-game" aria-label="Reiniciar a fase">
+          <span aria-hidden="true">↻</span><span class="reset-text">Reiniciar fase</span>
+        </button>
+      </header>
+
+      <section class="stage" aria-labelledby="stage-title">
+        <div class="scene" id="scene" data-phase="playing">
+          <canvas id="garden" width="1100" height="475" tabindex="0"
+            aria-label="Neblina em Tarô dos Gatos" aria-describedby="objective move-hint">
+            Guie Neblina pelas plataformas e recolha a carta de cada fase.
+          </canvas>
+          <section class="victory" id="victory" aria-labelledby="victory-title" hidden>
+            <div class="victory-panel">
+              <span class="victory-star" aria-hidden="true">✦</span>
+              <h2 id="victory-title"></h2>
+              <p id="victory-detail"></p>
+              <button type="button" class="reset reset-gold" id="next-action">Próxima fase</button>
+            </div>
+          </section>
+        </div>
+
+        <div class="touch-controls" role="group" aria-label="Controlar Neblina">
+          <button type="button" data-action="left" aria-label="Mover para a esquerda">←</button>
+          <button type="button" data-action="right" aria-label="Mover para a direita">→</button>
+          <button type="button" data-action="jump"><span aria-hidden="true">↑</span> Pular</button>
+          <button type="button" data-action="use"><span aria-hidden="true">✦</span> Carta</button>
+        </div>
+
+        <footer class="stage-footer">
+          <div class="stage-info">
+            <p class="objective" id="objective">Encontre a carta da Lua.</p>
+            <p class="feedback" id="feedback" role="status"></p>
+            <p class="move-hint" id="move-hint">
+              <kbd>←</kbd> <kbd>→</kbd> ou <kbd>A</kbd> <kbd>D</kbd> mover
+              <span aria-hidden="true">·</span> <kbd>Espaço</kbd> / <kbd>↑</kbd> / <kbd>W</kbd> pular
+              <span aria-hidden="true">·</span> <kbd>E</kbd> / <kbd>1</kbd> usar carta
+            </p>
+          </div>
+          <button type="button" class="arcana" id="arcana" data-state="locked" disabled>
+            <img id="card-art" src="./assets/taro/lua.webp" alt="">
+            <span class="card-text">
+              <span class="card-name" id="card-name">A Lua</span>
+              <span class="card-power" id="card-power"></span>
+            </span>
+            <span class="card-state" id="card-state">A encontrar</span>
+          </button>
+        </footer>
+      </section>
+      <noscript>Ative o JavaScript no navegador para jogar Tarô dos Gatos.</noscript>
+    </main>
+  </body>
+</html>
